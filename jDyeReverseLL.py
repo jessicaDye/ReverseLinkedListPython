@@ -4,46 +4,59 @@
 
 
 class Node:
-    def __init__(self): #constructor
-        self.data = None
+    def __init__(self, d): #constructor
+        self.data = d
         self.next = None
+        self.prev = None
+    
+    def __str__(self):
+        return str(self.data)
+
+  
 
 class LinkedList:
     def __init__(self): #constructor
         self.head = None
+        self.tail = None
 
-    def __str__(self): #do not allow print of the linked list to print the memory ID
-        s = 'data: ' + str(self.data) + "\n"
-        s += 'next:' + str(self.next) + "\n"
-        return s
+
     
-    def insert(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            return
-        last_node = self.head
-        while last_node.next:
-            last_node = last_node.next
-        last_node.next = new_node
+    def addNodeAtHead(self, d): #creates a new node and adds to head
+        new_node = Node(d)
 
-    def print_list(self):
-        current_node = self.head
-        while current_node:
-            print(current_node.head)
-            current_node = current_node.next
+        if self.head is not None:
+            self.head.prev = new_node
+
+        new_node.next = self.head
+        self.head = new_node
+
+        if self.tail is None:
+            self.tail = new_node
+
+    def __str__(self): 
+        cur_node = self.head
+        s = ""
+    
+        while cur_node:
+            s += str(cur_node.data) + " -> "
+            cur_node = cur_node.next
+    
+        return s + "None"
+     
+    # Print the linked list in reverse order
+    def print_reverse(self):
+        print(current_node.head)
+        current_node = current_node.next
 
 
 # Test 
 #A->B->C
-n1 = Node()
-n1.data = 'A'
-n2 = Node()
-n2.data = 'B'
-n3 = Node()
-n3.data = 'C'
+n1 = Node('A')
+#n1.data = 'A'
+n2 = Node('B')
+#n2.data = 'B'
+n3 = Node('C')
+#n3.data = 'C'
 
 print(n1.data) #A
 print(n2.data) #B
-print(n3.data) #C
-
