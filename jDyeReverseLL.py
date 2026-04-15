@@ -44,10 +44,14 @@ class LinkedList:
         return s + "None"
      
     # Print the linked list in reverse order
+    
     def print_reverse(self):
-        print(current_node.head)
-        current_node = current_node.next
-
+        current_node = self.tail        
+        while current_node:
+            print(current_node.data, end=" -> ")
+            current_node = current_node.prev  
+        print("None")
+    
 
 # Test 
 #A->B->C
@@ -60,3 +64,18 @@ n3 = Node('C')
 
 print(n1.data) #A
 print(n2.data) #B
+print(n3.data) #C
+
+# Test Linked List class
+ll = LinkedList()
+ll.addNodeAtHead('C')
+ll.addNodeAtHead('B')
+ll.addNodeAtHead('A')
+print(ll) #output should be A->B->C
+
+## Reverse ll -> return a new doubly linked list in which all elements are reversed.
+ll2 = LinkedList() 
+ll2.addNodeAtHead('C')
+ll2.addNodeAtHead('B')
+ll2.addNodeAtHead('A')
+ll2.print_reverse() #output should be C->B->A
